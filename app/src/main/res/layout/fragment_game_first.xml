@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_like"
+                android:gravity="center"
+                android:text="@string/like"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_sliding_validation"
+                android:gravity="center"
+                android:text="@string/sliding_validation"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_timer_shaft"
+                android:gravity="center"
+                android:text="@string/timer_shaft"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_photo_view"
+                android:gravity="center"
+                android:text="@string/photo_view"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_sliding_up_panel"
+                android:gravity="center"
+                android:text="@string/sliding_up_panel"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_zxing_one"
+                android:gravity="center"
+                android:text="@string/zxing_one"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_zxing_two"
+                android:gravity="center"
+                android:text="@string/zxing_two"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_zxing_three"
+                android:gravity="center"
+                android:text="@string/zxing_three"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_ucrop"
+                android:gravity="center"
+                android:text="@string/ucrop"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_dialog"
+                android:gravity="center"
+                android:text="@string/dialog"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_evaluate"
+                android:gravity="center"
+                android:text="@string/evaluate"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
+        <zl.wang.cn.com.wangmyapp.custom_view.HeaderWaveView
+            android:id="@+id/header_wave_view"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/iv_pink"/>
+    </RelativeLayout>
+
+</RelativeLayout>

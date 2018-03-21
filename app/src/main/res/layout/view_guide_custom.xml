@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@android:color/black"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="随意布局引导页"
+        android:gravity="center"
+        android:maxWidth="200dp"
+        android:textSize="15sp"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
+
+    <ImageView
+        android:layout_centerInParent="true"
+        android:id="@+id/iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="62dp"
+        android:src="@mipmap/wang_logo" />
+
+    <TextView
+        android:layout_marginTop="40dp"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv"
+        android:text="点击logo才能消失引导层"
+        android:textColor="@android:color/white" />
+</RelativeLayout>
