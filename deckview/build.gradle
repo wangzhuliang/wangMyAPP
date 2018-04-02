@@ -1,21 +1,81 @@
 apply plugin: 'com.android.library'
 
+/**
+ * android 代码块用来配置 Android 特定的构建配置
+ */
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
-
+    /**
+     * compileSdkVersion 用来指定 Gradle 用来编译应用的 Android API level，也就是说
+     * 你的应用可以使用这个 API level 及更低 API level 的 API 特性
+     */
+    //compileSdkVersion 27
+    //buildToolsVersion "27.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    /**
+     * buildToolsVersion 用来指定 SDK 所有构建工具、命令行工具、以及 Gradle 用来构建应用的编译器版本
+     * 你需要使用 SDK Manager 下载好该版本的构建工具
+     * 在 3.0.0 或更高版本的插件中。该属性是可选的，插件会使用推荐的版本
+     */
+    buildToolsVersion rootProject.ext.supportLibVersion
+    /**
+     * defaultConfig 代码块包含所有构建变体（build variants）默认使用的配置，也可以重写 main/AndroidManifest.xml 中的属性
+     * 当然，你也可以在 product flavors（产品风味）中重写其中一些属性
+     */
     defaultConfig {
+        /**
+         * applicationId 是发布时的唯一指定包名，尽管如此，你还是需要在 main/AndroidManifest.xml 文件中
+         * 定义值是该包名的 package 属性
+         */
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
+    /**
+     * buildTypes 代码块用来配置多个构建类型，构建系统默认定义了两个构建类型: debug 和 release
+     * debug 构建类型默认不显式声明，但它包含调试工具并使用 debug key 签名
+     * release 构建类型默认应用了混淆配置
+     */
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    /**
+     * 由于 product flavors 必须属于一个已命名的 flavor dimension，所以你至少需要定义一个 flavor dimension
+     * 如定义一个等级和最小 api 的 flavor dimension
+     */
+    /*flavorDimensions "tier", "minApi"
+    productFlavors {
+        free {
+            // 这个 product flavor 属于 "tier" flavor dimension
+            // 如果只有一个 dimension 那么这个属性就是可选的
+            dimension "tier"
+        }
+        paid {
+            dimension "tier"
+        }
+        minApi23 {
+            dimension "minApi"
+        }
+        minApi18 {
+            dimension "minApi"
+        }
+    }*/
+    /**
+     * 你可以使用 splits 代码块配置为不同屏幕分辨率或 ABI 的设备生成仅包含其支持的代码和资源的 APK
+     * 同时你需要配置 build 文件以便每个 APK 使用不同的 versionCode
+     */
+    /*splits {
+        density {
+            // 启用或禁用构建多个 APK
+            enable false
+            // 构建多个 APK 时排除这些分辨率
+            exclude "ldpi", "tvdpi", "xxxhdpi", "400dpi", "560dpi"
+        }
+    }*/
+
 }
 
 dependencies {
@@ -23,4 +83,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:support-annotations:28.0.0-alpha1'
     compile 'com.android.support:cardview-v7:27.1.0'
+    //-v7:${rootProject.ext.supportLibVersion}
 }

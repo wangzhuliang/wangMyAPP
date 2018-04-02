@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="postBean"
+            type="zl.wang.cn.com.wangmyapp.model.CMSBean.PostsBean"/>
+    </data>
+
+<android.support.v7.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="244dp"
     android:foreground="?attr/selectableItemBackground"
@@ -25,7 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            />
+        <!--app:imageUrl="@{postBean.image}"-->
 
         <TextView
             android:layout_alignParentBottom="true"
@@ -33,6 +43,8 @@
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:text="@{postBean.title}"/>
     </RelativeLayout>
 </android.support.v7.widget.CardView>
+</layout>

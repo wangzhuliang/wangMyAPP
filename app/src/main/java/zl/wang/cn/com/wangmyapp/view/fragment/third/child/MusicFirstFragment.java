@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -28,18 +30,20 @@ import java.util.List;
 import me.yokeyword.fragmentation.SupportFragment;
 import zl.wang.cn.com.wangmyapp.R;
 import zl.wang.cn.com.wangmyapp.adapter.AnimationAdapter;
+import zl.wang.cn.com.wangmyapp.custom_view.WangLinearLayoutManager;
 import zl.wang.cn.com.wangmyapp.view.activity.VideoActivity;
 import zl.wang.cn.com.wangmyapp.view.fragment.third.animation.CustomAnimation;
 import zl.wang.cn.com.wangmyapp.view.fragment.third.entity.Status;
 
 import static android.nfc.tech.MifareUltralight.PAGE_SIZE;
+import static android.widget.LinearLayout.HORIZONTAL;
 
 /**
  * Created by hahaha on 2018/3/9.
  * recycleview总结
  */
 
-public class MusicFirstFragment extends SupportFragment{
+public class MusicFirstFragment extends SupportFragment implements WangLinearLayoutManager.DyListener{
 
     private RecyclerView mRecyclerView;
     private AnimationAdapter mAnimationAdapter;
@@ -70,7 +74,8 @@ public class MusicFirstFragment extends SupportFragment{
         mRecyclerView.setHasFixedSize(true);
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeLayout);
         mSwipeRefreshLayout.setColorSchemeColors(Color.rgb(47, 223, 189));
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setLayoutManager(new WangLinearLayoutManager(getActivity(),MusicFirstFragment.this));
 
         initAdapter();
         initMenu(view);
@@ -183,6 +188,7 @@ public class MusicFirstFragment extends SupportFragment{
             public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                 if (isChecked) {
                     mAnimationAdapter.isFirstOnly(true);
+                    mRecyclerView.smoothScrollToPosition(0);
                 } else {
                     mAnimationAdapter.isFirstOnly(false);
                 }
@@ -253,7 +259,7 @@ public class MusicFirstFragment extends SupportFragment{
             }
         }).start();*/
         List<Status> data = new ArrayList<Status>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             Status status = new Status();
             status.setText("aaa"+i);
             data.add(status);
@@ -310,5 +316,30 @@ public class MusicFirstFragment extends SupportFragment{
         setData(true, data);
         mAnimationAdapter.setEnableLoadMore(true);
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void toTop() {
+
+        //mRecyclerView.smoothScrollToPosition(0);
+        specialUpdate();
+    }
+
+    private void specialUpdate() {
+        Handler handler = new Handler();
+        final Runnable r = new Runnable() {
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(true);
+                List<Status> data = new ArrayList<Status>();
+                for (int i = 0; i < 5; i++) {
+                    Status status = new Status();
+                    status.setText("aaa"+i);
+                    data.add(status);
+                }
+                setData(true, data);
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        };
+        handler.post(r);
     }
 }

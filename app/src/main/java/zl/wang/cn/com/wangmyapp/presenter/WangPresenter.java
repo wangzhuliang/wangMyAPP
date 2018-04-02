@@ -55,4 +55,11 @@ public class WangPresenter implements WangContract.Presenter,LoadTasksCallBack<R
     public void setWang(String code) {
         wangTask.execute(code,this);
     }
+
+    /**
+     * 释放引用，防止内存泄露
+     */
+    public void destroy() {
+        addTaskView = null;
+    }
 }

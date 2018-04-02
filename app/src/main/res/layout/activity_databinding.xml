@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+       <!-- alias用来区分同名类名-->
+        <import type="zl.wang.cn.com.wangmyapp.model.User" alias="DetailUser" />
+        <import type="zl.wang.cn.com.wangmyapp.view.activity.DataBindingActivity.MyStringUtils" />
+        <!--如果是使用系统自带的静态变量就需要像上面那样导入-->
+        <import type="android.view.View" />
+
+        <variable
+            name="user" type="DetailUser" />
+        <variable
+            name="firstName" type="String" />
+        <variable
+            name="lastName" type="String" />
+        <variable
+            name="presenter"
+            type="zl.wang.cn.com.wangmyapp.view.activity.DataBindingActivity.Presenter"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{user.lastName}"
+            android:onClick="@{presenter.onClick}"/>
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{user.displayName ?? user.lastName}" />
+        <!--user.displayName != null ? user.displayName : user.lastName-->
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{MyStringUtils.capitalize(user.firstName)}" />
+
+        <!--通过 ${} 可以直接把 Java 中定义的属性值赋值给 xml 属性-->
+        <TextView
+            android:text="@{user.lastName}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{user.isAdult ? View.VISIBLE:View.GONE}"/>
+
+        <!--使用资源数据-->
+        <TextView
+            android:padding="@{user.isAdult ? (int)@dimen/largePadding : (int)@dimen/smallPadding}"
+            android:background="@android:color/black"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_world" />
+
+    </LinearLayout>
+</layout>

@@ -24,6 +24,11 @@
     <string name="ucrop">裁剪图片</string>
     <string name="dialog">首页广告</string>
     <string name="evaluate">评价</string>
+    <string name="check_updates">检查更新</string>
+    <string name="adsorb">recycleview吸附效果</string>
+    <string name="databinding">databinding快速入门</string>
+    <string name="channel">频道定制</string>
+    <string name="voice">语音变声</string>
 
     <string name="large_text">
         "Material is the metaphor.\n\n"

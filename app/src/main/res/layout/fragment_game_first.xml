@@ -153,6 +153,71 @@
                 android:textColor="@color/white"
                 android:background="@color/orange"
                 android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_check_updates"
+                android:gravity="center"
+                android:text="@string/check_updates"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_adsorb"
+                android:gravity="center"
+                android:text="@string/adsorb"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_databinding"
+                android:gravity="center"
+                android:text="@string/databinding"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_channel"
+                android:gravity="center"
+                android:text="@string/channel"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/tv_voice"
+                android:gravity="center"
+                android:text="@string/voice"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"

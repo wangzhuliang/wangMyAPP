@@ -22,8 +22,23 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        ZXingLibrary.initDisplayOpinion(this);
         appContext = this;
         Utils.init(this);
+
+        initThirdService();
+    }
+
+    /**
+     * 初始化一些三方服务
+     */
+    public static void initThirdService() {
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                //设置线程的优先级；不与主线程抢资源
+                ZXingLibrary.initDisplayOpinion(appContext);
+            }
+        }.start();
     }
 }

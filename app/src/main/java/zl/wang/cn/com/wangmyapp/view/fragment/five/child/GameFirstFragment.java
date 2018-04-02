@@ -1,7 +1,9 @@
 package zl.wang.cn.com.wangmyapp.view.fragment.five.child;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -47,11 +50,16 @@ import me.yokeyword.fragmentation.SupportFragment;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
+import zl.wang.cn.com.wangmyapp.MainActivity;
 import zl.wang.cn.com.wangmyapp.R;
 import zl.wang.cn.com.wangmyapp.custom_view.HeaderWaveHelper;
 import zl.wang.cn.com.wangmyapp.custom_view.HeaderWaveView;
+import zl.wang.cn.com.wangmyapp.services.UpdateIntentService;
 import zl.wang.cn.com.wangmyapp.utils.CheckPermissionUtils;
 import zl.wang.cn.com.wangmyapp.utils.ImageUtil;
+import zl.wang.cn.com.wangmyapp.view.activity.AdsorbActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.ChannelActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.DataBindingActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.LikeActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.MyQRCodeActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.MyUCropActivity;
@@ -60,6 +68,7 @@ import zl.wang.cn.com.wangmyapp.view.activity.PhotoViewActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.SlidingUpPanelActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.SlidingValidationActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.TimerShaftActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.VocieActivity;
 import zl.wang.cn.com.wangmyapp.view.fragment.five.GameFragment;
 import zl.wang.cn.com.wangmyapp.view.fragment.third.child.MusicFirstFragment;
 
@@ -108,6 +117,11 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
     protected TextView tv_ucrop;
     protected TextView tv_dialog;
     protected TextView tv_evaluate;
+    protected TextView tv_check_updates;
+    protected TextView tv_adsorb;
+    protected TextView tv_databinding;
+    protected TextView tv_channel;
+    protected TextView tv_voice;
 
     public static GameFirstFragment newInstance() {
 
@@ -157,13 +171,11 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
         tv_ucrop = view.findViewById(R.id.tv_ucrop);
         tv_dialog = view.findViewById(R.id.tv_dialog);
         tv_evaluate = view.findViewById(R.id.tv_evaluate);
-
-        tv_zxing_one = view.findViewById(R.id.tv_zxing_one);
-        tv_zxing_two = view.findViewById(R.id.tv_zxing_two);
-        tv_zxing_three = view.findViewById(R.id.tv_zxing_three);
-        tv_ucrop = view.findViewById(R.id.tv_ucrop);
-        tv_dialog = view.findViewById(R.id.tv_dialog);
-        tv_evaluate = view.findViewById(R.id.tv_evaluate);
+        tv_check_updates = view.findViewById(R.id.tv_check_updates);
+        tv_adsorb = view.findViewById(R.id.tv_adsorb);
+        tv_databinding = view.findViewById(R.id.tv_databinding);
+        tv_channel = view.findViewById(R.id.tv_channel);
+        tv_voice = view.findViewById(R.id.tv_voice);
 
        /* SlideInUpAnimator animator = new SlideInUpAnimator(new OvershootInterpolator(1f));
         rv_wang.setItemAnimator(animator);*/
@@ -265,6 +277,63 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
             }
         });
 
+        tv_check_updates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialog =
+                        new AlertDialog.Builder(getActivity());
+                dialog.setTitle("版本更新");
+                dialog.setMessage("更新至新的版本");
+                dialog.setPositiveButton("确定",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //判断通知权限的有无,后续分状态处理
+                                beforeUpdateWork();
+                            }
+                        });
+                dialog.setNegativeButton("关闭",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //...To-do
+                            }
+                        });
+                dialog.show();
+            }
+        });
+
+        tv_adsorb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AdsorbActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tv_databinding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DataBindingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tv_channel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ChannelActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tv_voice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), VocieActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Animation enterAnimation = new AlphaAnimation(0f, 1f);
         enterAnimation.setDuration(600);
@@ -509,5 +578,76 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
     public void onResume() {
         super.onResume();
         mHeaderWaveHelper.start();
+    }
+
+    private void beforeUpdateWork() {
+        //没有权限的话,新对话框提醒用户
+        if (!isEnableNotification()) {
+            showNotificationAsk();
+            return;
+        }
+        toIntentServiceUpdate();
+    }
+
+    private boolean isEnableNotification() {
+        boolean ret = true;
+        try {
+            NotificationManagerCompat manager = NotificationManagerCompat.from(getActivity());
+            ret = manager.areNotificationsEnabled();
+        } catch (Exception e) {
+            return true;
+        }
+        return ret;
+    }
+
+    private void showNotificationAsk() {
+        AlertDialog.Builder dialog =
+                new AlertDialog.Builder(getActivity());
+        dialog.setTitle("通知权限");
+        dialog.setMessage("打开通知权限");
+        dialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //打开权限页面,让用户开启通知权限
+                        toSetting();
+                    }
+                });
+        dialog.setNeutralButton("跳过", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //用户可以跳过直接执行下载动作,但是不会有通知进度提醒(不过用户已知晓)
+                toIntentServiceUpdate();
+            }
+        });
+        dialog.setNegativeButton("关闭",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        dialog.show();
+    }
+
+    private void toSetting() {
+        try {
+            Intent localIntent = new Intent();
+            localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            localIntent.setData(Uri.fromParts("package", getActivity().getPackageName(), null));
+            startActivity(localIntent);
+        } catch (Exception e) {
+
+        }
+    }
+
+    private void toIntentServiceUpdate() {
+        Intent updateIntent = new Intent(getActivity(), UpdateIntentService.class);
+        updateIntent.setAction(UpdateIntentService.ACTION_UPDATE);
+        updateIntent.putExtra("appName", "wangMyAPP-1.0.1");
+        //随便一个apk的url进行模拟
+        updateIntent.putExtra("downUrl", "http://gdown.baidu.com/data/wisegame/38cbb321c273886e/YY_30086.apk");
+        getActivity().startService(updateIntent);
     }
 }

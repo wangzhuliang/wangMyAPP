@@ -1,10 +1,13 @@
 package zl.wang.cn.com.wangmyapp;
 
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Gravity;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -19,6 +22,9 @@ import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.SupportFragment;
 import zl.wang.cn.com.wangmyapp.base.BaseMainFragment;
 import zl.wang.cn.com.wangmyapp.event.TabSelectedEvent;
+import zl.wang.cn.com.wangmyapp.net.WangTask;
+import zl.wang.cn.com.wangmyapp.presenter.WangPresenter;
+import zl.wang.cn.com.wangmyapp.view.fragment.first.child.HomeFirstFragment;
 import zl.wang.cn.com.wangmyapp.view.fragment.second.BookFragment;
 import zl.wang.cn.com.wangmyapp.view.fragment.five.GameFragment;
 import zl.wang.cn.com.wangmyapp.view.fragment.first.HomeFragment;
@@ -33,6 +39,15 @@ public class MainActivity extends SupportActivity implements BottomNavigationBar
     public static final int FOURTH = 3;
     public static final int FIVE = 4;
     private SupportFragment[] mFragments = new SupportFragment[5];
+
+    private Handler mhandler = new  Handler(){
+        // 通过复写handlerMessage()从而确定更新UI的操作
+        @Override
+        public void handleMessage(Message msg) {
+                // 需执行的UI操作
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

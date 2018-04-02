@@ -1,6 +1,8 @@
 package zl.wang.cn.com.wangmyapp.adapter;
 
 import android.content.Context;
+import android.databinding.BindingAdapter;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zl.wang.cn.com.wangmyapp.R;
+import zl.wang.cn.com.wangmyapp.databinding.ItemHomeFirstWangBinding;
 import zl.wang.cn.com.wangmyapp.model.Article;
 import zl.wang.cn.com.wangmyapp.model.CMSBean;
 import zl.wang.cn.com.wangmyapp.listener.OnItemClickListener;
@@ -46,7 +49,13 @@ public class HomeFirstAdapter extends RecyclerView.Adapter<HomeFirstAdapter.VH>{
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_home_first, parent, false);
+        View view = mInflater.inflate(R.layout.item_home_first_wang, parent, false);
+
+        /*ItemHomeFirstWangBinding itemHomeFirstWangBinding = DataBindingUtil.inflate(mInflater, R.layout.item_home_first_wang, parent, false);
+        for (int i = 0; i < postsBeans.size(); i++) {
+            itemHomeFirstWangBinding.setPostBean(postsBeans.get(i));
+        }*/
+
         final VH holder = new VH(view);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,13 +78,14 @@ public class HomeFirstAdapter extends RecyclerView.Adapter<HomeFirstAdapter.VH>{
         ViewCompat.setTransitionName(holder.img, String.valueOf(position) + "_image");
         ViewCompat.setTransitionName(holder.tvTitle, String.valueOf(position) + "_tv");
 
-
-        //holder.img.setImageResource(item.getImgRes());
-        //holder.tvTitle.setText(item.getTitle());
-
-        Glide.with(context).load("http://cms.youlin365.com"+postsBeans.get(position).getImage()).into(holder.img);
-        holder.tvTitle.setText(postsBeans.get(position).getTitle());
+       Glide.with(context).load("http://cms.youlin365.com"+postsBeans.get(position).getImage()).into(holder.img);
+       holder.tvTitle.setText(postsBeans.get(position).getTitle());
     }
+
+   /* @BindingAdapter({"app:imageUrl"})
+    public static void loadImage(ImageView view, String url) {
+        Glide.with(view.getContext()).load("http://cms.youlin365.com"+url).into(view);
+    }*/
 
     public void setDatas(List<Article> items) {
         mItems.clear();

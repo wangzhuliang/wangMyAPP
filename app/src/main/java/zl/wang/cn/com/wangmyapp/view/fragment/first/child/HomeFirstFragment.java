@@ -1,5 +1,6 @@
 package zl.wang.cn.com.wangmyapp.view.fragment.first.child;
 
+import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -32,6 +33,8 @@ import retrofit2.Response;
 import zl.wang.cn.com.wangmyapp.MainActivity;
 import zl.wang.cn.com.wangmyapp.R;
 import zl.wang.cn.com.wangmyapp.adapter.HomeFirstAdapter;
+import zl.wang.cn.com.wangmyapp.databinding.FragmentHomeFirstBinding;
+import zl.wang.cn.com.wangmyapp.databinding.ItemHomeFirstWangBinding;
 import zl.wang.cn.com.wangmyapp.model.Article;
 import zl.wang.cn.com.wangmyapp.model.CMSBean;
 import zl.wang.cn.com.wangmyapp.contract.WangContract;
@@ -92,11 +95,11 @@ public class HomeFirstFragment extends SupportFragment implements SwipeRefreshLa
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_first, container, false);
         EventBusActivityScope.getDefault(_mActivity).register(this);
+        //FragmentHomeFirstBinding fragmentHomeFirstBinding = DataBindingUtil.setContentView(getActivity(),R.layout.fragment_home_first);
+        //initViewWang(fragmentHomeFirstBinding.getRoot());
         initView(view);
-
         WangTask wangTask = WangTask.getInstance();
         wangPresenter = new WangPresenter(HomeFirstFragment.this,wangTask);
-        this.setPresenter(wangPresenter);
 
         Window window = getActivity().getWindow();
         //默认API 最低19，状态栏透明
@@ -105,8 +108,17 @@ public class HomeFirstFragment extends SupportFragment implements SwipeRefreshLa
             ViewGroup contentView = window.getDecorView().findViewById(Window.ID_ANDROID_CONTENT);
             contentView.getChildAt(0).setFitsSystemWindows(false);
         }
-
+        //fragmentHomeFirstBinding.getRoot()
         return view;
+    }
+
+    /**
+     * 在onResume()中，调用了 presenter 得start()方法，获取数据并操作view界面的显示。
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        setPresenter(wangPresenter);
     }
 
     private void initView(View view) {
@@ -150,7 +162,49 @@ public class HomeFirstFragment extends SupportFragment implements SwipeRefreshLa
                 mPresenter.setWang("code");
             }
         });
+    }
 
+    private void initViewWang(View view) {
+        mRecy = (RecyclerView) view.findViewById(R.id.recy);
+        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
+        mFab = (FloatingActionButton) view.findViewById(R.id.fab);
+        helper=new LoadViewHelper( view.findViewById(R.id.aaa));
+        //helper.setLoadIng(R.layout.load_ing);
+
+        mRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        mRefreshLayout.setOnRefreshListener(this);
+
+        mRecy.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                mScrollTotal += dy;
+                if (mScrollTotal <= 0) {
+                    mInAtTop = true;
+                } else {
+                    mInAtTop = false;
+                }
+                if (dy > 5) {
+                    mFab.hide();
+                } else if (dy < -5) {
+                    mFab.show();
+                }
+            }
+        });
+
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(_mActivity, "Action", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        helper.setListener(new OnLoadViewListener() {
+            @Override
+            public void onRetryClick() {
+                mPresenter.setWang("code");
+            }
+        });
     }
 
     @Override
@@ -188,6 +242,10 @@ public class HomeFirstFragment extends SupportFragment implements SwipeRefreshLa
     public void onDestroyView() {
         super.onDestroyView();
         EventBusActivityScope.getDefault(_mActivity).unregister(this);
+        if (mPresenter != null) {
+            mPresenter.destroy();
+            mPresenter = null;
+        }
     }
 
     @Override
@@ -252,7 +310,6 @@ public class HomeFirstFragment extends SupportFragment implements SwipeRefreshLa
 
     @Override
     public void showLoading() {
-
         helper.showLoading();
     }
 
@@ -266,6 +323,12 @@ public class HomeFirstFragment extends SupportFragment implements SwipeRefreshLa
         helper.showError();
     }
 
+    /**
+     * 过isAdded()判断对应Activity是否销毁。
+     * 在Fragment在执行异步耗时操作后，如果调用Activity实例，
+     * 应当先使用isActive()方法加以判断
+     * @return
+     */
     @Override
     public boolean isActive() {
         return isAdded();

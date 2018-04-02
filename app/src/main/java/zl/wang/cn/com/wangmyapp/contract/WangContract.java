@@ -1,5 +1,9 @@
 package zl.wang.cn.com.wangmyapp.contract;
 
+import android.support.annotation.NonNull;
+
+import java.util.List;
+
 import retrofit2.Response;
 import zl.wang.cn.com.wangmyapp.base.BaseView;
 import zl.wang.cn.com.wangmyapp.model.CMSBean;
@@ -11,10 +15,6 @@ import zl.wang.cn.com.wangmyapp.model.CMSBean;
 
 public interface WangContract {
 
-    interface Presenter {
-        void setWang(String code);
-    }
-
     interface View extends BaseView<Presenter> {
 
         void getWang(Response<CMSBean> cmsBeanResponse);
@@ -23,6 +23,11 @@ public interface WangContract {
         void showError();
         //判断Fragment是否添加到了Activity
         boolean isActive();
+    }
+
+    interface Presenter {
+        void setWang(String code);
+        void destroy();
     }
 
 }

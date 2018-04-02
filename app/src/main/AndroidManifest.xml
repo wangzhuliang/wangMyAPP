@@ -55,6 +55,22 @@
         <activity android:name=".view.activity.SlidingUpPanelActivity"/>
 
         <activity android:name=".view.activity.VideoActivity"/>
+        <activity android:name=".view.activity.AdsorbActivity" />
+        <activity android:name=".view.activity.DataBindingActivity" />
+        <activity android:name=".view.activity.ChannelActivity" />
+        <activity android:name=".view.activity.VocieActivity" />
+
+        <service android:name=".services.UpdateIntentService"
+            android:exported="false"/>
+        <provider
+            android:authorities="zl.wang.cn.com.wangmyapp.FileProvider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepath"/>
+        </provider>
 
     </application>
 
