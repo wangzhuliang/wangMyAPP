@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.Gravity;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -22,9 +21,8 @@ import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.SupportFragment;
 import zl.wang.cn.com.wangmyapp.base.BaseMainFragment;
 import zl.wang.cn.com.wangmyapp.event.TabSelectedEvent;
-import zl.wang.cn.com.wangmyapp.net.WangTask;
-import zl.wang.cn.com.wangmyapp.presenter.WangPresenter;
-import zl.wang.cn.com.wangmyapp.view.fragment.first.child.HomeFirstFragment;
+import zl.wang.cn.com.wangmyapp.utils.NetworkUtil;
+import zl.wang.cn.com.wangmyapp.utils.ToastUtils;
 import zl.wang.cn.com.wangmyapp.view.fragment.second.BookFragment;
 import zl.wang.cn.com.wangmyapp.view.fragment.five.GameFragment;
 import zl.wang.cn.com.wangmyapp.view.fragment.first.HomeFragment;
@@ -53,6 +51,10 @@ public class MainActivity extends SupportActivity implements BottomNavigationBar
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (!NetworkUtil.isNetWorkAvailable(this)){
+            ToastUtils.showLongToast("无网络");
+        }
 
         BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         //设置导航栏模式

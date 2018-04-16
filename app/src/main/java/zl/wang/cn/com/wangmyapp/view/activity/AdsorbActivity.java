@@ -12,7 +12,7 @@ import java.util.List;
 import zl.wang.cn.com.wangmyapp.R;
 import zl.wang.cn.com.wangmyapp.adapter.PerformerListAdapter;
 import zl.wang.cn.com.wangmyapp.custom_view.StickyItemDecoration;
-import zl.wang.cn.com.wangmyapp.model.Performer;
+import zl.wang.cn.com.wangmyapp.bean.Performer;
 
 /**
  * Created by lcling on 2018/3/27.

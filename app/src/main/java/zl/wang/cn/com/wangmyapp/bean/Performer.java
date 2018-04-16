@@ -1,4 +1,4 @@
-package zl.wang.cn.com.wangmyapp.model;
+package zl.wang.cn.com.wangmyapp.bean;
 
 /**
  * Created by cpf on 2018/1/16.

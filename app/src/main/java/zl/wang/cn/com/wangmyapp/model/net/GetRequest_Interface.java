@@ -1,8 +1,8 @@
-package zl.wang.cn.com.wangmyapp.net;
+package zl.wang.cn.com.wangmyapp.model.net;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import zl.wang.cn.com.wangmyapp.model.CMSBean;
+import zl.wang.cn.com.wangmyapp.bean.CMSBean;
 
 /**
  * Created by Carson_Ho on 17/3/20.

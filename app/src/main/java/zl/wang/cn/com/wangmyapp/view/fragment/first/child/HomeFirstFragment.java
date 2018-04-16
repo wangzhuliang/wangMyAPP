@@ -1,6 +1,5 @@
 package zl.wang.cn.com.wangmyapp.view.fragment.first.child;
 
-import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,10 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.helper.loadviewhelper.help.OnLoadViewListener;
 import com.helper.loadviewhelper.load.LoadViewHelper;
 
@@ -33,16 +30,15 @@ import retrofit2.Response;
 import zl.wang.cn.com.wangmyapp.MainActivity;
 import zl.wang.cn.com.wangmyapp.R;
 import zl.wang.cn.com.wangmyapp.adapter.HomeFirstAdapter;
-import zl.wang.cn.com.wangmyapp.databinding.FragmentHomeFirstBinding;
-import zl.wang.cn.com.wangmyapp.databinding.ItemHomeFirstWangBinding;
-import zl.wang.cn.com.wangmyapp.model.Article;
-import zl.wang.cn.com.wangmyapp.model.CMSBean;
+import zl.wang.cn.com.wangmyapp.bean.Article;
+import zl.wang.cn.com.wangmyapp.bean.CMSBean;
 import zl.wang.cn.com.wangmyapp.contract.WangContract;
 import zl.wang.cn.com.wangmyapp.event.TabSelectedEvent;
 import zl.wang.cn.com.wangmyapp.helper.DetailTransition;
-import zl.wang.cn.com.wangmyapp.listener.OnItemClickListener;
-import zl.wang.cn.com.wangmyapp.net.WangTask;
+import zl.wang.cn.com.wangmyapp.model.listener.OnItemClickListener;
+import zl.wang.cn.com.wangmyapp.model.WangTask;
 import zl.wang.cn.com.wangmyapp.presenter.WangPresenter;
+import zl.wang.cn.com.wangmyapp.utils.CollectionUtil;
 
 /**
  * Created by 99142 on 2018/3/3.
@@ -256,12 +252,14 @@ public class HomeFirstFragment extends SupportFragment implements SwipeRefreshLa
 
     @Override
     public void getWang(Response<CMSBean> cmsBeanResponse) {
-        if (cmsBeanResponse != null){
             helper.showContent();
-            urlImage = "http://cms.youlin365.com" + cmsBeanResponse.body().getPosts().get(0).getImage();
+            if (CollectionUtil.isEmpty(cmsBeanResponse.body().getPosts().get(0).getImage())) {
+                urlImage = "http://cms.youlin365.com" + cmsBeanResponse.body().getPosts().get(0).getImage();
+            }
             String urlName = cmsBeanResponse.body().getPosts().get(0).getMeta_title().toString();
-            urlText = cmsBeanResponse.body().getPosts().get(0).getTitle();
-
+            if (CollectionUtil.isEmpty(cmsBeanResponse.body().getPosts().get(0).getTitle())) {
+                urlText = cmsBeanResponse.body().getPosts().get(0).getTitle();
+            }
             mAdapter = new HomeFirstAdapter(_mActivity,urlImage,urlText,cmsBeanResponse.body().getPosts());
             LinearLayoutManager manager = new LinearLayoutManager(_mActivity);
             mRecy.setLayoutManager(manager);
@@ -305,7 +303,6 @@ public class HomeFirstFragment extends SupportFragment implements SwipeRefreshLa
                 articleList.add(article);
             }
             mAdapter.setDatas(articleList);
-        }
     }
 
     @Override

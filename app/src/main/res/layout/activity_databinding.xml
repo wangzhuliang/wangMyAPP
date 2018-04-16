@@ -3,7 +3,7 @@
 
     <data>
        <!-- alias用来区分同名类名-->
-        <import type="zl.wang.cn.com.wangmyapp.model.User" alias="DetailUser" />
+        <import type="zl.wang.cn.com.wangmyapp.bean.User" alias="DetailUser" />
         <import type="zl.wang.cn.com.wangmyapp.view.activity.DataBindingActivity.MyStringUtils" />
         <!--如果是使用系统自带的静态变量就需要像上面那样导入-->
         <import type="android.view.View" />
@@ -30,8 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{user.lastName}"
-            android:onClick="@{presenter.onClick}"/>
-
+            />
+        <!--android:onClick="@{presenter.onClick}"-->
         <TextView
             android:gravity="center"
             android:layout_width="match_parent"
@@ -49,16 +49,16 @@
             android:text="@{user.lastName}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{user.isAdult ? View.VISIBLE:View.GONE}"/>
-
+           />
+        <!--android:visibility="@{user.isAdult ? View.VISIBLE:View.GONE}"-->
         <!--使用资源数据-->
         <TextView
-            android:padding="@{user.isAdult ? (int)@dimen/largePadding : (int)@dimen/smallPadding}"
+
             android:background="@android:color/black"
             android:textColor="@android:color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hello_world" />
-
+        <!--android:padding="@{user.isAdult ? (int)@dimen/largePadding : (int)@dimen/smallPadding}"-->
     </LinearLayout>
 </layout>

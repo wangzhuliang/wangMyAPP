@@ -1,4 +1,4 @@
-package zl.wang.cn.com.wangmyapp.listener;
+package zl.wang.cn.com.wangmyapp.model.listener;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

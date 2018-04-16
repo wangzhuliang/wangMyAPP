@@ -1,4 +1,4 @@
-package zl.wang.cn.com.wangmyapp.listener;
+package zl.wang.cn.com.wangmyapp.model.listener;
 
 /**
  * Created by 99142 on 2018/2/28.

@@ -1,4 +1,4 @@
-package zl.wang.cn.com.wangmyapp.net;
+package zl.wang.cn.com.wangmyapp.model.net;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

@@ -11,7 +11,7 @@ import com.vivian.timelineitemdecoration.util.Util;
 import java.util.List;
 
 import zl.wang.cn.com.wangmyapp.R;
-import zl.wang.cn.com.wangmyapp.model.Event;
+import zl.wang.cn.com.wangmyapp.bean.Event;
 
 /**
  * *          _       _

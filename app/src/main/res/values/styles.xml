@@ -99,4 +99,9 @@
         <item name="android:textColor">#FFCCCCCC</item>
     </style>
 
+    <style name="easyPopAnim" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/bottom_out</item>
+    </style>
+
 </resources>

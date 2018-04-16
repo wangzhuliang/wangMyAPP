@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <yanzhikai.textpath.SyncTextPathView
+        android:id="@+id/stpv_2017"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:duration="12000"
+        app:showPainter="true"
+        app:text="2017"
+        app:textInCenter="true"
+        app:textSize="60sp"
+        app:pathStrokeColor="@android:color/holo_red_light"
+        app:paintStrokeColor="@android:color/holo_red_light"
+        android:layout_weight="1"
+        />
+
+    <yanzhikai.textpath.AsyncTextPathView
+        android:id="@+id/atpv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:duration="12000"
+        app:showPainter="true"
+        app:text="炎之铠"
+        app:textInCenter="true"
+        app:textSize="62sp"
+        android:layout_gravity="center_horizontal"
+        app:pathStrokeColor="@android:color/holo_orange_light"
+        app:paintStrokeColor="@android:color/holo_orange_light"
+        />
+
+    <yanzhikai.textpath.SyncPathView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/spv"
+        />
+
+    <yanzhikai.textpath.AsyncPathView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/aspv"
+        />
+
+            <!--<yanzhikai.textpath.AsyncTextPathView
+                android:id="@+id/atpv_totond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:duration="2500"
+                app:showPainter="true"
+                app:text="测试自动换行(abcdefghijk(lmnopqrst)uvwxyz)"
+                app:pathStrokeColor="@android:color/holo_orange_light"
+                app:paintStrokeColor="@android:color/holo_orange_light"
+                app:textSize="64sp"
+                app:autoStart="true"
+                android:layout_gravity="center_horizontal"
+                />-->
+
+</LinearLayout>

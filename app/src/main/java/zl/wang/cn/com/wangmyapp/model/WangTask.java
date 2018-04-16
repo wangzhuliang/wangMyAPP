@@ -1,4 +1,4 @@
-package zl.wang.cn.com.wangmyapp.net;
+package zl.wang.cn.com.wangmyapp.model;
 
 import java.security.cert.CertificateException;
 
@@ -13,15 +13,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import zl.wang.cn.com.wangmyapp.listener.LoadTasksCallBack;
-import zl.wang.cn.com.wangmyapp.model.CMSBean;
+import zl.wang.cn.com.wangmyapp.model.listener.LoadTasksCallBack;
+import zl.wang.cn.com.wangmyapp.bean.CMSBean;
+import zl.wang.cn.com.wangmyapp.model.net.GetRequest_Interface;
+import zl.wang.cn.com.wangmyapp.model.net.NetTask;
 
 /**
  * Created by 99142 on 2018/2/28.
  * NetTask实现类,获取数据
  */
 
-public class WangTask implements NetTask<String>{
+public class WangTask implements NetTask<String> {
 
     private static WangTask Instance = null;
     private WangTask() {

@@ -8,6 +8,6 @@
     <com.appeaser.deckview.views.DeckView
         android:id="@+id/deckview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

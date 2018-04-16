@@ -1,12 +1,8 @@
 package zl.wang.cn.com.wangmyapp.contract;
 
-import android.support.annotation.NonNull;
-
-import java.util.List;
-
 import retrofit2.Response;
 import zl.wang.cn.com.wangmyapp.base.BaseView;
-import zl.wang.cn.com.wangmyapp.model.CMSBean;
+import zl.wang.cn.com.wangmyapp.bean.CMSBean;
 
 /**
  * Created by 99142 on 2018/2/28.

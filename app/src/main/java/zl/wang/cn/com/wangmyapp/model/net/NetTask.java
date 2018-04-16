@@ -1,6 +1,6 @@
-package zl.wang.cn.com.wangmyapp.net;
+package zl.wang.cn.com.wangmyapp.model.net;
 
-import zl.wang.cn.com.wangmyapp.listener.LoadTasksCallBack;
+import zl.wang.cn.com.wangmyapp.model.listener.LoadTasksCallBack;
 
 /**
  * Created by 99142 on 2018/2/28.

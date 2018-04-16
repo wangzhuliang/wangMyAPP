@@ -1,9 +1,9 @@
 package zl.wang.cn.com.wangmyapp.presenter;
 
 import retrofit2.Response;
-import zl.wang.cn.com.wangmyapp.listener.LoadTasksCallBack;
-import zl.wang.cn.com.wangmyapp.model.CMSBean;
-import zl.wang.cn.com.wangmyapp.net.WangTask;
+import zl.wang.cn.com.wangmyapp.model.listener.LoadTasksCallBack;
+import zl.wang.cn.com.wangmyapp.bean.CMSBean;
+import zl.wang.cn.com.wangmyapp.model.WangTask;
 import zl.wang.cn.com.wangmyapp.contract.WangContract;
 
 /**

@@ -58,7 +58,10 @@
         <activity android:name=".view.activity.AdsorbActivity" />
         <activity android:name=".view.activity.DataBindingActivity" />
         <activity android:name=".view.activity.ChannelActivity" />
-        <activity android:name=".view.activity.VocieActivity" />
+        <activity android:name=".view.activity.WangRxjavaActivity" />
+        <activity android:name=".view.activity.ViewActivity" />
+        <activity android:name=".view.activity.WaterViewActivity" />
+        <activity android:name=".view.activity.TextViewActivity" />
 
         <service android:name=".services.UpdateIntentService"
             android:exported="false"/>

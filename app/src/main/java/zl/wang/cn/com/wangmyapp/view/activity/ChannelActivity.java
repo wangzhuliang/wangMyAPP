@@ -16,8 +16,8 @@ import java.util.List;
 import zl.wang.cn.com.wangmyapp.R;
 import zl.wang.cn.com.wangmyapp.adapter.ChannelAdapter;
 import zl.wang.cn.com.wangmyapp.custom_view.GridSpacingItemDecoration;
-import zl.wang.cn.com.wangmyapp.listener.ItemDragCallback;
-import zl.wang.cn.com.wangmyapp.model.ChannelBean;
+import zl.wang.cn.com.wangmyapp.model.listener.ItemDragCallback;
+import zl.wang.cn.com.wangmyapp.bean.ChannelBean;
 
 /**
  * Created by lcling on 2018/3/29.

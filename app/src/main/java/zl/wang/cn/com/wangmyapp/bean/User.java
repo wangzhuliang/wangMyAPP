@@ -1,4 +1,4 @@
-package zl.wang.cn.com.wangmyapp.model;
+package zl.wang.cn.com.wangmyapp.bean;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;

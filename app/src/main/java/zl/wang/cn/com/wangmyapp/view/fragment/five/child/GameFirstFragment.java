@@ -50,7 +50,6 @@ import me.yokeyword.fragmentation.SupportFragment;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
-import zl.wang.cn.com.wangmyapp.MainActivity;
 import zl.wang.cn.com.wangmyapp.R;
 import zl.wang.cn.com.wangmyapp.custom_view.HeaderWaveHelper;
 import zl.wang.cn.com.wangmyapp.custom_view.HeaderWaveView;
@@ -67,10 +66,11 @@ import zl.wang.cn.com.wangmyapp.view.activity.MyZxingActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.PhotoViewActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.SlidingUpPanelActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.SlidingValidationActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.TextViewActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.TimerShaftActivity;
-import zl.wang.cn.com.wangmyapp.view.activity.VocieActivity;
-import zl.wang.cn.com.wangmyapp.view.fragment.five.GameFragment;
-import zl.wang.cn.com.wangmyapp.view.fragment.third.child.MusicFirstFragment;
+import zl.wang.cn.com.wangmyapp.view.activity.ViewActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.WangRxjavaActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.WaterViewActivity;
 
 /**
  * Created by hahaha on 2018/3/13.
@@ -122,6 +122,9 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
     protected TextView tv_databinding;
     protected TextView tv_channel;
     protected TextView tv_voice;
+    private TextView tv_view;
+    private TextView tv_water_view;
+    private TextView tv_text_view;
 
     public static GameFirstFragment newInstance() {
 
@@ -176,6 +179,9 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
         tv_databinding = view.findViewById(R.id.tv_databinding);
         tv_channel = view.findViewById(R.id.tv_channel);
         tv_voice = view.findViewById(R.id.tv_voice);
+        tv_view = view.findViewById(R.id.tv_view);
+        tv_water_view = view.findViewById(R.id.tv_water_view);
+        tv_text_view = view.findViewById(R.id.tv_text_view);
 
        /* SlideInUpAnimator animator = new SlideInUpAnimator(new OvershootInterpolator(1f));
         rv_wang.setItemAnimator(animator);*/
@@ -330,7 +336,31 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
         tv_voice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), VocieActivity.class);
+                Intent intent = new Intent(getActivity(), WangRxjavaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tv_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tv_water_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), WaterViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tv_text_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TextViewActivity.class);
                 startActivity(intent);
             }
         });

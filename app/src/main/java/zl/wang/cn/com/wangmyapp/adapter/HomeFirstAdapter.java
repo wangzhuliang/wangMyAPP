@@ -1,8 +1,6 @@
 package zl.wang.cn.com.wangmyapp.adapter;
 
 import android.content.Context;
-import android.databinding.BindingAdapter;
-import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
@@ -18,10 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zl.wang.cn.com.wangmyapp.R;
-import zl.wang.cn.com.wangmyapp.databinding.ItemHomeFirstWangBinding;
-import zl.wang.cn.com.wangmyapp.model.Article;
-import zl.wang.cn.com.wangmyapp.model.CMSBean;
-import zl.wang.cn.com.wangmyapp.listener.OnItemClickListener;
+import zl.wang.cn.com.wangmyapp.bean.Article;
+import zl.wang.cn.com.wangmyapp.bean.CMSBean;
+import zl.wang.cn.com.wangmyapp.model.listener.OnItemClickListener;
 
 /**
  * Created by 99142 on 2018/3/4.

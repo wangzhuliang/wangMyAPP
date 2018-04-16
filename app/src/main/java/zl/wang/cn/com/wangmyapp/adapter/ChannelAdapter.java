@@ -1,7 +1,6 @@
 package zl.wang.cn.com.wangmyapp.adapter;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -20,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 import zl.wang.cn.com.wangmyapp.R;
-import zl.wang.cn.com.wangmyapp.model.ChannelBean;
+import zl.wang.cn.com.wangmyapp.bean.ChannelBean;
 import zl.wang.cn.com.wangmyapp.view.activity.ChannelActivity;
 
 

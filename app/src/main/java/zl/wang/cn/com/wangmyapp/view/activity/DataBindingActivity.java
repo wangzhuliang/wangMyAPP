@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 import zl.wang.cn.com.wangmyapp.R;
 import zl.wang.cn.com.wangmyapp.databinding.ActivityDatabindingBinding;
-import zl.wang.cn.com.wangmyapp.model.User;
+import zl.wang.cn.com.wangmyapp.bean.User;
 
 /**
  * Created by lcling on 2018/3/28.

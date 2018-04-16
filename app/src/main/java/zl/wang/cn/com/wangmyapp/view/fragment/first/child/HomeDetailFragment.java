@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 
 import zl.wang.cn.com.wangmyapp.R;
 import zl.wang.cn.com.wangmyapp.base.BaseBackFragment;
-import zl.wang.cn.com.wangmyapp.model.Article;
+import zl.wang.cn.com.wangmyapp.bean.Article;
 import zl.wang.cn.com.wangmyapp.view.fragment.CycleFragment;
 
 /**

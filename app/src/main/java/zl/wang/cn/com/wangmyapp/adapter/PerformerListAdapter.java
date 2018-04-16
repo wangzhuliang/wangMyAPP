@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zl.wang.cn.com.wangmyapp.R;
-import zl.wang.cn.com.wangmyapp.model.Performer;
+import zl.wang.cn.com.wangmyapp.bean.Performer;
 
 /**
  * Created by cpf on 2018/1/16.
