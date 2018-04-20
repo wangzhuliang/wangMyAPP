@@ -85,7 +85,7 @@ public class MusicFirstFragment extends SupportFragment implements WangLinearLay
     private void initAdapter() {
 
         mAnimationAdapter = new AnimationAdapter();
-        mAnimationAdapter.openLoadAnimation();
+        mAnimationAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_LEFT);
         mAnimationAdapter.setNotDoAnimationCount(mFirstPageItemCount);
         mAnimationAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
