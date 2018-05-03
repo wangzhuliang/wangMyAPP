@@ -3,8 +3,6 @@ package zl.wang.cn.com.wangmyapp.bean;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import zl.wang.cn.com.wangmyapp.BR;
-
 /**
  * Created by lcling on 2018/3/28.
  * DataBinding可以实时动态刷新数据。
@@ -52,6 +50,6 @@ public class User extends BaseObservable{
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-        notifyPropertyChanged(BR.firstName);
+        //notifyPropertyChanged(BR.firstName);
     }
 }

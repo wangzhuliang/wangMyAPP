@@ -250,6 +250,97 @@
                 android:layout_height="40dp" />
 
             <TextView
+                android:id="@+id/flowlayout"
+                android:gravity="center"
+                android:text="@string/flowlayout"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/click_location"
+                android:gravity="center"
+                android:text="@string/click_location"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/dagger_two_demo"
+                android:gravity="center"
+                android:text="@string/dagger_two_demo"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/move_text"
+                android:gravity="center"
+                android:text="@string/move_text"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/page_turning"
+                android:gravity="center"
+                android:text="@string/page_turning"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/ripple"
+                android:gravity="center"
+                android:text="@string/ripple"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/together"
+                android:gravity="center"
+                android:text="@string/together"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
                 android:id="@+id/tv_text_view"
                 android:gravity="center"
                 android:text="@string/text_view"

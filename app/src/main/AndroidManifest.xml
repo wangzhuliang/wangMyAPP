@@ -14,6 +14,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <application
         android:name=".base.MyApplication"
         android:allowBackup="true"
@@ -58,10 +60,24 @@
         <activity android:name=".view.activity.AdsorbActivity" />
         <activity android:name=".view.activity.DataBindingActivity" />
         <activity android:name=".view.activity.ChannelActivity" />
-        <activity android:name=".view.activity.WangRxjavaActivity" />
+        <activity android:name=".view.activity.wangrxjava.WangRxjavaActivity" />
         <activity android:name=".view.activity.ViewActivity" />
         <activity android:name=".view.activity.WaterViewActivity" />
         <activity android:name=".view.activity.TextViewActivity" />
+        <activity android:name=".view.activity.FlowLayoutActivity" />
+        <activity android:name=".view.activity.FlowLayoutTwoActivity" />
+        <activity android:name=".services.AndroidOPermissionActivity" />
+        <activity android:name=".view.activity.ClickLocationActivity" />
+        <activity android:name=".view.activity.DaggerTwoDemoActivity" />
+        <activity android:name=".dagger2.another.b.BActivity" />
+        <activity android:name=".dagger2.another.a.AActivity" />
+        <activity android:name=".view.activity.MoveTextActivity" />
+        <activity android:name=".view.activity.PageTurningActivity" />
+        <activity android:name=".view.activity.RippleActivity" />
+        <activity android:name=".view.activity.Together.TogetherActivity" />
+        <activity android:name=".view.activity.wangrxjava.SelectionActivity" />
+        <activity android:name=".view.activity.OperatorsActivity" />
+        <activity android:name=".view.activity.wangrxjava.SimpleExampleActivity" />
 
         <service android:name=".services.UpdateIntentService"
             android:exported="false"/>
@@ -74,6 +90,19 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepath"/>
         </provider>
+
+        <!-- Android 7.0 照片、APK下载保存路径-->
+        <!--<provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="zl.wang.cn.com.wangmyapp.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>-->
+
+
 
     </application>
 

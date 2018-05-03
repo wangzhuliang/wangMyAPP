@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 import zl.wang.cn.com.wangmyapp.R;
-import zl.wang.cn.com.wangmyapp.databinding.ActivityDatabindingBinding;
 import zl.wang.cn.com.wangmyapp.bean.User;
 
 /**
@@ -23,13 +22,13 @@ public class DataBindingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
        /*用 DatabindingUtil.setContentView() 来替换掉 setContentView()，
         然后创建一个 user 对象，通过 binding.setUser(user) 与 variable 进行绑定。*/
-        ActivityDatabindingBinding binding = DataBindingUtil.setContentView(this,
+        /*ActivityDatabindingBinding binding = DataBindingUtil.setContentView(this,
                 R.layout.activity_databinding);
         User user = new User("fei","Liang",10);
         binding.setUser(user);
         binding.setFirstName("aaa");
         binding.setLastName("bbb");
-        binding.setPresenter(new Presenter());
+        binding.setPresenter(new Presenter());*/
     }
 
     /**

@@ -32,6 +32,13 @@
     <string name="view">仿简书view弹出</string>
     <string name="water_view">蚂蚁森林水滴</string>
     <string name="text_view">文字转化为路径动画</string>
+    <string name="flowlayout">RecyclerView流式布局</string>
+    <string name="click_location">仿微信朋友圈点击评论自动定位</string>
+    <string name="dagger_two_demo">dagger2_demo</string>
+    <string name="move_text">跑马灯效果</string>
+    <string name="page_turning">3D版翻页公告</string>
+    <string name="ripple">主题切换动画效果</string>
+    <string name="together">上下联动</string>
 
     <string name="spd"/>
     <string name="original_y"/>

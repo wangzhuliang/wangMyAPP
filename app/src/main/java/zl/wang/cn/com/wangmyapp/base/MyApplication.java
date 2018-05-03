@@ -1,22 +1,26 @@
 package zl.wang.cn.com.wangmyapp.base;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
-
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
-
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.plugins.RxJavaPlugins;
 import zl.wang.cn.com.wangmyapp.bean.BaseResponse;
+import zl.wang.cn.com.wangmyapp.dagger2.another.User;
+import zl.wang.cn.com.wangmyapp.dagger2.another.UserComponent;
+import zl.wang.cn.com.wangmyapp.dagger2.another.UserModule;
+import zl.wang.cn.com.wangmyapp.dagger2.base.AppComponent;
+import zl.wang.cn.com.wangmyapp.dagger2.base.AppModule;
+import zl.wang.cn.com.wangmyapp.dagger2.base.DaggerAppComponent;
 import zl.wang.cn.com.wangmyapp.utils.Exceptions;
 import zl.wang.cn.com.wangmyapp.utils.Utils;
 import zl.wang.cn.com.wangmyapp.view.activity.ViewActivity;
@@ -35,6 +39,15 @@ public class MyApplication extends Application {
     private static final String TAG = "CustomApplication";
     private Handler mainHandler;
 
+    //application组件
+    private AppComponent appComponent;
+    //用户组件
+    private UserComponent userComponent;
+    //获取当前application的实例
+    public static MyApplication get(Context context) {
+        return (MyApplication) context.getApplicationContext();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -52,6 +65,9 @@ public class MyApplication extends Application {
                 return new ObservableSubscribeHooker(observer);
             }
         });
+
+        //注入全局Application
+        appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
     }
 
     /**
@@ -67,6 +83,22 @@ public class MyApplication extends Application {
             }
         }.start();
     }
+
+    //对外提供UserComponent
+    public UserComponent getUserComponent() {
+        return userComponent;
+    }
+
+    //注入UserComponent，调用此方法后，UserCope生效
+    public UserComponent createUserComponent(User userA,User userB) {
+        userComponent = appComponent.plus(new UserModule(userA,userB));
+        return userComponent;
+    }
+    //释放UserComponent组件
+    public void releaseUserComponent() {
+        userComponent = null;
+    }
+
 
     class ObservableSubscribeHooker<T> implements Observer<T> {
         private Observer<T> actual;

@@ -53,23 +53,32 @@ import pub.devrel.easypermissions.EasyPermissions;
 import zl.wang.cn.com.wangmyapp.R;
 import zl.wang.cn.com.wangmyapp.custom_view.HeaderWaveHelper;
 import zl.wang.cn.com.wangmyapp.custom_view.HeaderWaveView;
+import zl.wang.cn.com.wangmyapp.services.AppDownloadManager;
 import zl.wang.cn.com.wangmyapp.services.UpdateIntentService;
 import zl.wang.cn.com.wangmyapp.utils.CheckPermissionUtils;
 import zl.wang.cn.com.wangmyapp.utils.ImageUtil;
+import zl.wang.cn.com.wangmyapp.utils.ToastUtils;
 import zl.wang.cn.com.wangmyapp.view.activity.AdsorbActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.ChannelActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.ClickLocationActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.DaggerTwoDemoActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.DataBindingActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.FlowLayoutActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.LikeActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.MoveTextActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.MyQRCodeActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.MyUCropActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.MyZxingActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.PageTurningActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.PhotoViewActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.RippleActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.SlidingUpPanelActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.SlidingValidationActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.TextViewActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.TimerShaftActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.Together.TogetherActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.ViewActivity;
-import zl.wang.cn.com.wangmyapp.view.activity.WangRxjavaActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.wangrxjava.WangRxjavaActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.WaterViewActivity;
 
 /**
@@ -125,6 +134,13 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
     private TextView tv_view;
     private TextView tv_water_view;
     private TextView tv_text_view;
+    private TextView flowlayout;
+    private TextView click_location;
+    private TextView dagger_two_demo;
+    private TextView move_text;
+    private TextView page_turning;
+    private TextView ripple;
+    private TextView together;
 
     public static GameFirstFragment newInstance() {
 
@@ -182,6 +198,13 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
         tv_view = view.findViewById(R.id.tv_view);
         tv_water_view = view.findViewById(R.id.tv_water_view);
         tv_text_view = view.findViewById(R.id.tv_text_view);
+        flowlayout = view.findViewById(R.id.flowlayout);
+        click_location = view.findViewById(R.id.click_location);
+        dagger_two_demo = view.findViewById(R.id.dagger_two_demo);
+        move_text = view.findViewById(R.id.move_text);
+        page_turning = view.findViewById(R.id.page_turning);
+        ripple = view.findViewById(R.id.ripple);
+        together = view.findViewById(R.id.together);
 
        /* SlideInUpAnimator animator = new SlideInUpAnimator(new OvershootInterpolator(1f));
         rv_wang.setItemAnimator(animator);*/
@@ -306,6 +329,8 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
                             }
                         });
                 dialog.show();
+
+
             }
         });
 
@@ -338,6 +363,9 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), WangRxjavaActivity.class);
                 startActivity(intent);
+
+                //6.0,7.0,8.0更新
+                //showUpdateDialog();
             }
         });
 
@@ -357,10 +385,66 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
             }
         });
 
+        flowlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FlowLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
+
         tv_text_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), TextViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        click_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ClickLocationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        dagger_two_demo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DaggerTwoDemoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        move_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MoveTextActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        page_turning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PageTurningActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ripple.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RippleActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        together.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TogetherActivity.class);
                 startActivity(intent);
             }
         });
@@ -679,5 +763,18 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
         //随便一个apk的url进行模拟
         updateIntent.putExtra("downUrl", "http://gdown.baidu.com/data/wisegame/38cbb321c273886e/YY_30086.apk");
         getActivity().startService(updateIntent);
+    }
+
+    private void showUpdateDialog() {
+        ToastUtils.showLongToast("暂时更新为适配6.0，7.0，8.0下载更新");
+        AppDownloadManager mDownloadManager = new AppDownloadManager(getActivity());
+        mDownloadManager.setUpdateListener(new AppDownloadManager.OnUpdateListener() {
+            @Override
+            public void update(int currentByte, int totalByte) {
+
+            }
+        });
+
+        mDownloadManager.downloadApk("http://gdown.baidu.com/data/wisegame/38cbb321c273886e/YY_30086.apk", "wang", "下下下");
     }
 }

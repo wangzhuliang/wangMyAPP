@@ -1,22 +1,24 @@
-package zl.wang.cn.com.wangmyapp.view.activity;
+package zl.wang.cn.com.wangmyapp.view.activity.wangrxjava;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
-import java.nio.CharBuffer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -35,50 +37,102 @@ import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import zl.wang.cn.com.wangmyapp.BuildConfig;
-import zl.wang.cn.com.wangmyapp.MainActivity;
 import zl.wang.cn.com.wangmyapp.R;
 import zl.wang.cn.com.wangmyapp.bean.BaseResponse;
-import zl.wang.cn.com.wangmyapp.bean.LoginRequest;
-import zl.wang.cn.com.wangmyapp.bean.LoginResponse;
-import zl.wang.cn.com.wangmyapp.bean.RegisterRequest;
-import zl.wang.cn.com.wangmyapp.bean.RegisterResponse;
-import zl.wang.cn.com.wangmyapp.bean.UserBaseInfoRequest;
-import zl.wang.cn.com.wangmyapp.bean.UserBaseInfoResponse;
-import zl.wang.cn.com.wangmyapp.bean.UserExtraInfoRequest;
-import zl.wang.cn.com.wangmyapp.bean.UserExtraInfoResponse;
-import zl.wang.cn.com.wangmyapp.bean.UserInfo;
-import zl.wang.cn.com.wangmyapp.model.RetrofitProvider;
 import zl.wang.cn.com.wangmyapp.model.net.Api;
 import zl.wang.cn.com.wangmyapp.model.net.RetrofitClient;
+
 
 /**
  * Created by lcling on 2018/4/2.
  *
  */
 
-public class WangRxjavaActivity extends AppCompatActivity {
+public class WangRxjavaActivity extends RxAppCompatActivity {
 
     private static final String TAG = "WangRxjavaActivity";
     private Api api = RetrofitClient.get().create(Api.class);
+    private TextView btn_operators;
+
 
     @SuppressLint("CheckResult")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vocie);
+        
+        //WangDemo();
+        /**
+         * 网络请求
+         */
+        /*Api api = RetrofitProvider.get().create(Api.class);
+        api.login(new LoginRequest())
+                .subscribeOn(Schedulers.io())               //在IO线程进行网络请求
+                .observeOn(AndroidSchedulers.mainThread())  //回到主线程去处理请求结果
+                .subscribe(new Observer<LoginResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {}
+
+                    @Override
+                    public void onNext(LoginResponse value) {}
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(WangRxjavaActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Toast.makeText(WangRxjavaActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                    }
+                });*/
+
+        //优化网络请求
+        //demo();
+        //Zip操作符，从两个接口获取数据的时候
+        //demo1();
+        //Backpressure控制流量
+        //demo2();
+        //响应式拉
+        //demo3();
+
+        //实战
+        //提到过如何利用Retrofit中的GsonConverter来处理API请求错误的方法，
+        // ，今天给大家介绍另外一种优雅的方法，
+        // 利用RxJava内部的RxJavaPlugins来做这么一个骚操作。
+        //demo4();
+
+
+
+        //封装
+        iniViews();
+
+    }
+
+    private void iniViews() {
+
+        btn_operators = (TextView) findViewById(R.id.btn_operators);
+
+
+        btn_operators.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WangRxjavaActivity.this,SelectionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+
+
+
+    private void WangDemo() {
 
         /**ObservableEmitter这个就是用来发出事件的，
-        它可以发出三种类型的事件，
-        通过调用emitter的onNext(T value)、onComplete()和onError(Throwable error)
-        就可以分别发出next事件、complete事件和error事件*/
+         它可以发出三种类型的事件，
+         通过调用emitter的onNext(T value)、onComplete()和onError(Throwable error)
+         就可以分别发出next事件、complete事件和error事件*/
         Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
             public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
@@ -144,6 +198,7 @@ public class WangRxjavaActivity extends AppCompatActivity {
             }
         });
 
+
         /**
          * 让它去子线程中发送事件, 然后再改变下游的线程,
          * 让它去主线程接收事件
@@ -187,50 +242,10 @@ public class WangRxjavaActivity extends AppCompatActivity {
                 .subscribe(consumer);
 
         /**Schedulers.io() 代表io操作的线程, 通常用于网络,读写文件等io密集型的操作
-        Schedulers.computation() 代表CPU计算密集型的操作, 例如需要大量计算的操作
-        Schedulers.newThread() 代表一个常规的新线程
-        AndroidSchedulers.mainThread() 代表Android的主线程*/
+         Schedulers.computation() 代表CPU计算密集型的操作, 例如需要大量计算的操作
+         Schedulers.newThread() 代表一个常规的新线程
+         AndroidSchedulers.mainThread() 代表Android的主线程*/
 
-
-        /**
-         * 网络请求
-         */
-        Api api = RetrofitProvider.get().create(Api.class);
-        api.login(new LoginRequest())
-                .subscribeOn(Schedulers.io())               //在IO线程进行网络请求
-                .observeOn(AndroidSchedulers.mainThread())  //回到主线程去处理请求结果
-                .subscribe(new Observer<LoginResponse>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {}
-
-                    @Override
-                    public void onNext(LoginResponse value) {}
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Toast.makeText(WangRxjavaActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Toast.makeText(WangRxjavaActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        //优化网络请求
-        demo();
-        //Zip操作符，从两个接口获取数据的时候
-        demo1();
-        //Backpressure控制流量
-        demo2();
-        //响应式拉
-        demo3();
-
-        //实战
-        //提到过如何利用Retrofit中的GsonConverter来处理API请求错误的方法，
-        // ，今天给大家介绍另外一种优雅的方法，
-        // 利用RxJava内部的RxJavaPlugins来做这么一个骚操作。
-        demo4();
 
     }
 
@@ -261,14 +276,14 @@ public class WangRxjavaActivity extends AppCompatActivity {
         mSubscription.request(n);
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         practice1();
         try {
             Thread.sleep(10000000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     private static void practice1() {
         //这个例子是读取一个文本文件，
@@ -547,8 +562,8 @@ public class WangRxjavaActivity extends AppCompatActivity {
         Observable<String> observable2 = Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                Log.d(TAG, "emit A");
-                emitter.onNext("A");
+                Log.d(TAG, "emit AModule");
+                emitter.onNext("AModule");
                 Log.d(TAG, "emit B");
                 emitter.onNext("B");
                 Log.d(TAG, "emit C");
@@ -592,7 +607,7 @@ public class WangRxjavaActivity extends AppCompatActivity {
         D/TAG: emit 3
         D/TAG: emit 4
         D/TAG: emit complete1
-        D/TAG: emit A
+        D/TAG: emit AModule
         D/TAG: onNext: 1A
         D/TAG: emit B
         D/TAG: onNext: 2B
@@ -605,7 +620,7 @@ public class WangRxjavaActivity extends AppCompatActivity {
          * Zip来打包请求:
          * UserInfo,为两个Bean
          */
-        final Api api = RetrofitProvider.get().create(Api.class);
+        /*final Api api = RetrofitProvider.get().create(Api.class);
         Observable<UserBaseInfoResponse> observable11 =
                 api.getUserBaseInfo(new UserBaseInfoRequest()).subscribeOn(Schedulers.io());
 
@@ -625,7 +640,7 @@ public class WangRxjavaActivity extends AppCompatActivity {
                     public void accept(UserInfo userInfo) throws Exception {
                         //do something;
                     }
-                });
+                });*/
 
     }
 
@@ -733,7 +748,7 @@ public class WangRxjavaActivity extends AppCompatActivity {
         /**
          * 如何优雅的处理嵌套网络请求
          */
-        final Api api = RetrofitProvider.get().create(Api.class);
+        /*final Api api = RetrofitProvider.get().create(Api.class);
         api.register(new RegisterRequest())            //发起注册请求
                 .subscribeOn(Schedulers.io())               //在IO线程进行网络请求
                 .observeOn(AndroidSchedulers.mainThread())  //回到主线程去处理请求注册结果
@@ -762,7 +777,7 @@ public class WangRxjavaActivity extends AppCompatActivity {
                     public void accept(Throwable throwable) throws Exception {
                         Toast.makeText(WangRxjavaActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
                     }
-                });
+                });*/
     }
 
 }
