@@ -7,22 +7,22 @@ package zl.wang.cn.com.wangmyapp.bean;
 
 public class BaseBean {
 
-    private String name;
-    private String code;
+    private String appid;
+    private String url;
 
-    public String getName() {
-        return name;
+    public String getAppid() {
+        return appid;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAppid(String appid) {
+        this.appid = appid;
     }
 
-    public String getCode() {
-        return code;
+    public String getUrl() {
+        return url;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

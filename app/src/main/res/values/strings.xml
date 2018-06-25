@@ -39,10 +39,27 @@
     <string name="page_turning">3D版翻页公告</string>
     <string name="ripple">主题切换动画效果</string>
     <string name="together">上下联动</string>
+    <string name="gallery_projection">3D画廊</string>
+    <string name="label">标签</string>
+    <string name="tagviewgroup">仿小红书标签</string>
+    <string name="navigation_animation">仿小红书导航动画</string>
+    <string name="pull_down_menu">下拉菜单</string>
+    <string name="face_recognition">人脸识别</string>
+
+    <string name="phone_login">手机登录</string>
+    <string name="phone_reg">注册帐号</string>
+
+    <array name="str_body">
+        <item>相册</item>
+        <item>照相机</item>
+    </array>
 
     <string name="spd"/>
     <string name="original_y"/>
     <string name="isUp"/>
+
+    <string name="info_string">"1. 点击创建按钮开始创建标签组\n2. 按住标签组滑动，调整位置\n3.点击单个标签，调整该标签的方向\n4. 点击中心圆弹出dialog\n5. 长按标签组删除"</string>
+
 
     <string name="large_text">
         "Material is the metaphor.\n\n"

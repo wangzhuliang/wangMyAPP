@@ -70,9 +70,9 @@ public class WangTask implements NetTask<String> {
             public void onResponse(Call<CMSBean> call, Response<CMSBean> response) {
                 //请求处理,输出结果
 
-                String urlImage = "http://cms.youlin365.com" + response.body().getPosts().get(0).getImage();
-                String urlName = "http://cms.youlin365.com" + response.body().getPosts().get(0).getMeta_title().toString();
-                String urlText = "http://cms.youlin365.com" + response.body().getPosts().get(0).getTitle();
+                //String urlImage = "http://cms.youlin365.com" + response.body().getPosts().get(0).getImage();
+                //String urlName = "http://cms.youlin365.com" + response.body().getPosts().get(0).getMeta_title().toString();
+                //String urlText = "http://cms.youlin365.com" + response.body().getPosts().get(0).getTitle();
 
                 callBack.onSuccess(response);
                 //callBack.onFailed();

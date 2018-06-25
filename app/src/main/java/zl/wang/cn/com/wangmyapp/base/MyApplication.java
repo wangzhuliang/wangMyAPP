@@ -7,6 +7,9 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
+
+import org.xutils.x;
+
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import io.reactivex.Observable;
@@ -68,6 +71,8 @@ public class MyApplication extends Application {
 
         //注入全局Application
         appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+
+        x.Ext.init(this);
     }
 
     /**

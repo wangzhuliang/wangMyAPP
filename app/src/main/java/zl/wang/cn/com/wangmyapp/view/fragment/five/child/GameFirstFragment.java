@@ -63,17 +63,24 @@ import zl.wang.cn.com.wangmyapp.view.activity.ChannelActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.ClickLocationActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.DaggerTwoDemoActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.DataBindingActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.FaceRecognitionActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.FlowLayoutActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.GalleryProjectionActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.LabelActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.LikeActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.MoveTextActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.MyQRCodeActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.MyUCropActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.MyZxingActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.NavigationAnimationActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.PageTurningActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.PhotoViewActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.PullDownMenuActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.PullDownMenuAnotherActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.RippleActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.SlidingUpPanelActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.SlidingValidationActivity;
+import zl.wang.cn.com.wangmyapp.view.activity.TagviewgroupActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.TextViewActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.TimerShaftActivity;
 import zl.wang.cn.com.wangmyapp.view.activity.Together.TogetherActivity;
@@ -141,6 +148,12 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
     private TextView page_turning;
     private TextView ripple;
     private TextView together;
+    private TextView gallery_projection;
+    private TextView label;
+    private TextView tagviewgroup;
+    private TextView navigation_animation;
+    private TextView pull_down_menu;
+    private TextView face_recognition;
 
     public static GameFirstFragment newInstance() {
 
@@ -205,6 +218,12 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
         page_turning = view.findViewById(R.id.page_turning);
         ripple = view.findViewById(R.id.ripple);
         together = view.findViewById(R.id.together);
+        gallery_projection = view.findViewById(R.id.gallery_projection);
+        label = view.findViewById(R.id.label);
+        tagviewgroup = view.findViewById(R.id.tagviewgroup);
+        navigation_animation = view.findViewById(R.id.navigation_animation);
+        pull_down_menu = view.findViewById(R.id.pull_down_menu);
+        face_recognition = view.findViewById(R.id.face_recognition);
 
        /* SlideInUpAnimator animator = new SlideInUpAnimator(new OvershootInterpolator(1f));
         rv_wang.setItemAnimator(animator);*/
@@ -448,6 +467,58 @@ public class GameFirstFragment extends SupportFragment implements EasyPermission
                 startActivity(intent);
             }
         });
+
+        gallery_projection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), GalleryProjectionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        label.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LabelActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tagviewgroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TagviewgroupActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        navigation_animation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NavigationAnimationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        pull_down_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent = new Intent(getActivity(), PullDownMenuActivity.class);
+                //startActivity(intent);
+                Intent intent = new Intent(getActivity(), PullDownMenuAnotherActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        face_recognition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FaceRecognitionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         Animation enterAnimation = new AlphaAnimation(0f, 1f);
         enterAnimation.setDuration(600);

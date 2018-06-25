@@ -48,32 +48,16 @@ import zl.wang.cn.com.wangmyapp.utils.CollectionUtil;
 
 public class HomeFirstFragment extends SupportFragment implements SwipeRefreshLayout.OnRefreshListener,WangContract.View{
 
-    //private Toolbar mToolbar;
     private RecyclerView mRecy;
     private SwipeRefreshLayout mRefreshLayout;
     private FloatingActionButton mFab;
-
     private HomeFirstAdapter mAdapter;
-
     private boolean mInAtTop = true;
     private int mScrollTotal;
-
-    private String[] mTitles = new String[]{
-            "Use imagery to express a distinctive voice and exemplify creative excellence.",
-            "An image that tells a story is infinitely more interesting and informative.",
-            "The most powerful iconic images consist of a few meaningful elements, with minimal distractions.",
-            "Properly contextualized concepts convey your message and brand more effectively.",
-            "Have an iconic point of focus in your imagery. Focus ranges from a single entity to an overarching composition."
-    };
-
-    private int[] mImgRes = new int[]{
-            R.mipmap.bg_first, R.mipmap.bg_second, R.mipmap.bg_third, R.mipmap.bg_fourth, R.mipmap.bg_fifth
-    };
 
     public static HomeFirstFragment newInstance() {
 
         Bundle args = new Bundle();
-
         HomeFirstFragment fragment = new HomeFirstFragment();
         fragment.setArguments(args);
         return fragment;
@@ -83,7 +67,6 @@ public class HomeFirstFragment extends SupportFragment implements SwipeRefreshLa
     private WangContract.Presenter mPresenter;
     private String urlImage;
     private String urlText;
-
     LoadViewHelper helper;
 
     @Nullable
@@ -91,8 +74,6 @@ public class HomeFirstFragment extends SupportFragment implements SwipeRefreshLa
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_first, container, false);
         EventBusActivityScope.getDefault(_mActivity).register(this);
-        //FragmentHomeFirstBinding fragmentHomeFirstBinding = DataBindingUtil.setContentView(getActivity(),R.layout.fragment_home_first);
-        //initViewWang(fragmentHomeFirstBinding.getRoot());
         initView(view);
         WangTask wangTask = WangTask.getInstance();
         wangPresenter = new WangPresenter(HomeFirstFragment.this,wangTask);
@@ -256,7 +237,7 @@ public class HomeFirstFragment extends SupportFragment implements SwipeRefreshLa
             if (CollectionUtil.isEmpty(cmsBeanResponse.body().getPosts().get(0).getImage())) {
                 urlImage = "http://cms.youlin365.com" + cmsBeanResponse.body().getPosts().get(0).getImage();
             }
-            String urlName = cmsBeanResponse.body().getPosts().get(0).getMeta_title().toString();
+            //String urlName = cmsBeanResponse.body().getPosts().get(0).getMeta_title().toString();
             if (CollectionUtil.isEmpty(cmsBeanResponse.body().getPosts().get(0).getTitle())) {
                 urlText = cmsBeanResponse.body().getPosts().get(0).getTitle();
             }

@@ -1,21 +1,12 @@
 package zl.wang.cn.com.wangmyapp;
 
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Gravity;
-
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.ashokvarma.bottomnavigation.ShapeBadgeItem;
 import com.ashokvarma.bottomnavigation.TextBadgeItem;
-
-import java.util.ArrayList;
-
 import me.yokeyword.eventbusactivityscope.EventBusActivityScope;
 import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -29,7 +20,8 @@ import zl.wang.cn.com.wangmyapp.view.fragment.first.HomeFragment;
 import zl.wang.cn.com.wangmyapp.view.fragment.third.MusicFragment;
 import zl.wang.cn.com.wangmyapp.view.fragment.four.TvFragment;
 
-public class MainActivity extends SupportActivity implements BottomNavigationBar.OnTabSelectedListener,BaseMainFragment.OnBackToFirstListener{
+public class MainActivity extends SupportActivity implements BottomNavigationBar.OnTabSelectedListener,
+        BaseMainFragment.OnBackToFirstListener{
 
     public static final int FIRST = 0;
     public static final int SECOND = 1;
@@ -37,15 +29,6 @@ public class MainActivity extends SupportActivity implements BottomNavigationBar
     public static final int FOURTH = 3;
     public static final int FIVE = 4;
     private SupportFragment[] mFragments = new SupportFragment[5];
-
-    private Handler mhandler = new  Handler(){
-        // 通过复写handlerMessage()从而确定更新UI的操作
-        @Override
-        public void handleMessage(Message msg) {
-                // 需执行的UI操作
-
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +43,7 @@ public class MainActivity extends SupportActivity implements BottomNavigationBar
         //设置导航栏模式
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_SHIFTING);
         //设置导航栏背景模式
-        bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
+        bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         //BACKGROUND_STYLE_RIPPLE
         //BACKGROUND_STYLE_STATIC,加上这个字体颜色可以修改
         TextBadgeItem numberBadgeItem = new TextBadgeItem();
@@ -90,13 +73,6 @@ public class MainActivity extends SupportActivity implements BottomNavigationBar
                 .setFirstSelectedPosition(0)
                 .initialise();
 
-        //MODE_FIXED+BACKGROUND_STYLE_STATIC效果
-        //MODE_FIXED+BACKGROUND_STYLE_RIPPLE效果
-        //MODE_SHIFTING+BACKGROUND_STYLE_STATIC效果
-        //MODE_SHIFTING+BACKGROUND_STYLE_RIPPLE效果
-
-        //fragments = getFragments();
-        //setDefaultFragment();
         bottomNavigationBar.setTabSelectedListener(this);
 
         SupportFragment firstFragment = findFragment(HomeFragment.class);
@@ -129,32 +105,11 @@ public class MainActivity extends SupportActivity implements BottomNavigationBar
     @Override
     public void onTabSelected(int position) {
         showHideFragment(mFragments[position]);
-        /*if (fragments != null) {
-            if (position < fragments.size()) {
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                Fragment fragment = fragments.get(position);
-                if (fragment.isAdded()) {
-                    ft.replace(R.id.layFrame, fragment);
-                } else {
-                    ft.add(R.id.layFrame, fragment);
-                }
-                ft.commitAllowingStateLoss();
-            }
-        }*/
     }
 
     @Override
     public void onTabUnselected(int position) {
-        /*if (fragments != null) {
-            if (position < fragments.size()) {
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                Fragment fragment = fragments.get(position);
-                ft.remove(fragment);
-                ft.commitAllowingStateLoss();
-            }
-        }*/
+
     }
 
     @Override
@@ -185,24 +140,6 @@ public class MainActivity extends SupportActivity implements BottomNavigationBar
             // 主要为了交互: 重选tab 如果列表不在顶部则移动到顶部,如果已经在顶部,则刷新
             EventBusActivityScope.getDefault(MainActivity.this).post(new TabSelectedEvent(position));
         }
-    }
-
-    /** * 设置默认的 */
-    private void setDefaultFragment() {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.layFrame, HomeFragment.newInstance("Home"));
-        transaction.commit();
-    }
-
-    private ArrayList<Fragment> getFragments() {
-        ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(HomeFragment.newInstance("Home"));
-        fragments.add(BookFragment.newInstance("Books"));
-        fragments.add(MusicFragment.newInstance("Music"));
-        fragments.add(TvFragment.newInstance("Movies"));
-        fragments.add(GameFragment.newInstance("Games"));
-        return fragments;
     }
 
     @Override

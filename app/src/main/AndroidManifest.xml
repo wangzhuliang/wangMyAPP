@@ -33,6 +33,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".SplashAnoherActivity"/>
+
         <activity android:name=".MainActivity"/>
 
         <activity android:name=".view.activity.MyZxingActivity"/>
@@ -78,6 +80,15 @@
         <activity android:name=".view.activity.wangrxjava.SelectionActivity" />
         <activity android:name=".view.activity.OperatorsActivity" />
         <activity android:name=".view.activity.wangrxjava.SimpleExampleActivity" />
+        <activity android:name=".view.activity.GalleryProjectionActivity" />
+        <activity android:name=".view.activity.LabelActivity" />
+        <activity android:name=".view.activity.TagviewgroupActivity" />
+        <activity android:name=".view.activity.tagview.TagEditActivity" />
+        <activity android:name=".view.activity.tagview.TagListActivity" />
+        <activity android:name=".view.activity.NavigationAnimationActivity" />
+        <activity android:name=".view.activity.PullDownMenuActivity" />
+        <activity android:name=".view.activity.PullDownMenuAnotherActivity" />
+        <activity android:name=".view.activity.FaceRecognitionActivity" />
 
         <service android:name=".services.UpdateIntentService"
             android:exported="false"/>

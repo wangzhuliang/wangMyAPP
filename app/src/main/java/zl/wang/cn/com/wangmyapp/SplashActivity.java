@@ -65,7 +65,7 @@ public class SplashActivity extends AppIntro{
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
-        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        startActivity(new Intent(SplashActivity.this, SplashAnoherActivity.class));
         finish();
     }
 
@@ -74,7 +74,7 @@ public class SplashActivity extends AppIntro{
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        startActivity(new Intent(SplashActivity.this, SplashAnoherActivity.class));
         finish();
     }
 }

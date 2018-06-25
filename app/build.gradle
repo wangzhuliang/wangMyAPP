@@ -128,5 +128,7 @@ dependencies {
 
     implementation 'com.github.ngreedy:tribe_lib:2.9.4'
 
+    implementation files('libs/mnavbarviewlib-v1.0.0.aar')
 
+    implementation 'org.xutils:xutils:3.5.0'
 }
